@@ -1,10 +1,12 @@
 {
     "name":"nour-almasrieh/socialwall",
     "description": "Social Wall",
+    "license": "BSD-2-Clause",
     "authors": [
       {
         "name":"Nour Almasrieh",
-        "email": "nour.almasrieh@gmail.com"
+        "email": "nour.almasrieh@gmail.com",
+        "role": "Developer"
       }
     ],
     "require":{
