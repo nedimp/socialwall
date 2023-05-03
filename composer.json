@@ -1,0 +1,33 @@
+{
+    "name":"nour-almasrieh/socialwall",
+    "description": "Social Wall",
+    "authors": [
+      {
+        "name":"Nour Almasrieh",
+        "email": "nour.almasrieh@gmail.com"
+      }
+    ],
+    "require":{
+      "silverstripe/recipe-cms": "^4.11",
+      "dnadesign/silverstripe-elemental": "^4",
+      "axllent/silverstripe-scss": "^1.8",
+      "unclecheese/silverstripe-image-optionset": "^2.0",
+      "buckleshusky/fontawesomeiconpicker": "^3.0",
+      "bummzack/sortablefile": "^2"
+    },
+    "autoload": {
+      "psr-4": {
+        "socialwall\\": "src/"
+      }
+    },
+    "extra": {
+      "expose": [
+        "client",
+        "client/css",
+        "client/images",
+        "client/javascript",
+        "client/scss"
+      ]
+    }
+  }
+  

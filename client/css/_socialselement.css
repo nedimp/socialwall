@@ -1,0 +1,77 @@
+.socialpage .card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+.SocialsElement .card {
+    border: none;
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+}
+.socialpage .socialcard .rounded-social-buttons .social-button, 
+.SocialsElement .socialcard .rounded-social-buttons .social-button {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    width: 3.125rem;
+    height: 3.125rem;
+    border: 0.125rem solid transparent;
+    padding: 0;
+    text-decoration: none;
+    text-align: center;
+    color: #005C89;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 2em;
+    border-radius: 1.6875rem;
+    transition: all 0.5s ease;
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+    background: #009a44;
+}
+
+.socialpage .socialcard .rounded-social-buttons .social-button:hover,
+.SocialsElement .socialcard .rounded-social-buttons .social-button:hover{
+    background: #005C89 !important;
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+}
+.socialpage .socialcard .rounded-social-buttons :not(i), 
+.SocialsElement .socialcard .rounded-social-buttons :not(i) {
+    color: #005C89;
+    font-size: 18px;
+}
+.socialpage i,
+.SocialsElement  i{
+    color: #fff;
+}
+.socialpage .socialcard .rounded-social-buttons .social-button:hover i,
+.SocialsElement .socialcard .rounded-social-buttons .social-button:hover i{
+    color: #fff;
+}
+.socialpage .socialcard :not(i), 
+.SocialsElement .socialcard :not(i) {
+    color: #0158A3;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.socialpage .platform__icon,
+.SocialsElement .platform__icon {
+    position: absolute;
+    top: 5rem;
+    right: 1rem;
+}
+.socialpage .socialcard .profileimage, 
+.SocialsElement .socialcard .profileimage {
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+}
