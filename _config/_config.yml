@@ -1,6 +1,16 @@
 ---
 Name: socialselement
 ---
+RyanPotter\SilverStripeColorField\Forms\ColorField:
+  colors:
+    - '#003087'
+    - '#0077c8'
+    - '#008893'
+    - '#BBDEFB'
+    - '#FFFFFF'
+    - '#FF4081'
+    - '#212121'
+    - '#727272'
 NourAlmasrieh\SocialsElement:
   #Defines all Layouts
   Layouts:

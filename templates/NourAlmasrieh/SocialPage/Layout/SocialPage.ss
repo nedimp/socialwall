@@ -1,4 +1,6 @@
-<style>$TemplateInlineFile('/socialwall/client', '/css/_social.css')</style>
+<style>$TemplateInlineFile('/socialwall/client', '/css/_socialselement.css')</style>
+<style>$TemplateInlineFile('/socialwall/client', '/css/swiper.min.css')</style>
+<script>$TemplateInlineFile('/socialwall/client', '/javascript/swiper.min.js')</script>
 <script>$TemplateInlineFile('/socialwall/client', '/javascript/masonry.min.js')</script>
 <% include PageHeader %>
 <div class="socialpage position-relative">
