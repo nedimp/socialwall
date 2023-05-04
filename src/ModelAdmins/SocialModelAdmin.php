@@ -1,13 +1,9 @@
 <?php
 
-namespace NourAlmasrieh\SocialModelAdmin;
+namespace NourAlmasrieh\SocialWall;
 
 use SilverStripe\Admin\ModelAdmin;
-use NourAlmasrieh\AllConfSocial\AllConfSocial;
-use NourAlmasrieh\FacebookPosts\FacebookPosts;
-use NourAlmasrieh\InstagramPosts\InstagramPosts;
-use NourAlmasrieh\FacebookProvider\FacebookProvider;
-use NourAlmasrieh\InstagramProvider\InstagramProvider;
+
 
 class SocialModelAdmin extends ModelAdmin
 {

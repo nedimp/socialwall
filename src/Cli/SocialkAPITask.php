@@ -1,8 +1,7 @@
 <?php
-namespace NourAlmasrieh\SocialkAPITask;
+namespace NourAlmasrieh\SocialWall;
+
 use SilverStripe\Dev\BuildTask;
-use NourAlmasrieh\FacebookProvider\FacebookProvider;
-use NourAlmasrieh\InstagramProvider\InstagramProvider;
 
 class SocialkAPITask extends BuildTask
 {

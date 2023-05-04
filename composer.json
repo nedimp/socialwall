@@ -25,7 +25,6 @@
     },
     "extra": {
       "expose": [
-        "client",
         "client/css",
         "client/images",
         "client/javascript",

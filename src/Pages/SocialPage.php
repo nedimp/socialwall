@@ -1,13 +1,13 @@
 <?php
-namespace NourAlmasrieh\SocialPage;
+namespace NourAlmasrieh\SocialWall;
 use Page;
 use SilverStripe\Dev\Debug;
 use SilverStripe\ORM\ArrayList;
+use SilverStripe\ORM\DataObject;
 use SilverStripe\View\ArrayData;
+use SilverStripe\Core\Config\Config;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\CheckboxField;
-use NourAlmasrieh\FacebookPosts\FacebookPosts;
-use NourAlmasrieh\InstagramPosts\InstagramPosts;
 
 class SocialPage extends Page
 {
@@ -32,9 +32,10 @@ class SocialPage extends Page
             <div class='text-center'>
                 <br>
                 Um neue Einträge in Social Media zu erhalten
-                <a class='btn action btn-primary my-5 ml-3' target='_blank' href='/dev/tasks/FacebookAPITask'>Import</a>
+                <a class='btn action btn-primary my-5 ml-3' target='_blank' href='/dev/tasks/NourAlmasrieh-SocialWall-SocialkAPITask'>Import</a>
             </div>
         "), 'MenuTitle');
+        $this->extend('updateSocialPageCMSFields', $fields);
 
         return $fields;
     }
@@ -140,7 +141,6 @@ class SocialPage extends Page
             return $this->getFacebook();
         }elseif($this->ShowOnInstagram){
             return $this->getInstagram();
-            Debug::dump('test');die;
         }
         return $this->getSlides();
     }

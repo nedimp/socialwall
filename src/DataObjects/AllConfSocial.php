@@ -1,6 +1,6 @@
 <?php
 
-namespace NourAlmasrieh\AllConfSocial;
+namespace NourAlmasrieh\SocialWall;
 
 use SilverStripe\Assets\Image;
 use SilverStripe\ORM\DataObject;

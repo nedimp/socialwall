@@ -1,13 +1,12 @@
 <?php
 
-namespace NourAlmasrieh\InstagramProvider;
+namespace NourAlmasrieh\SocialWall;
 
 use SilverStripe\Assets\Image;
 use SilverStripe\Assets\Folder;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\TextareaField;
-use NourAlmasrieh\InstagramPosts\InstagramPosts;
 
 class InstagramProvider extends DataObject
 {

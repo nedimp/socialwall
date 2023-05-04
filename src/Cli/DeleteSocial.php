@@ -1,10 +1,8 @@
 <?php
 
-namespace NourAlmasrieh\DeleteSocial;
+namespace NourAlmasrieh\SocialWall;
 
 use SilverStripe\Dev\BuildTask;
-use NourAlmasrieh\FacebookPosts\FacebookPosts;
-use NourAlmasrieh\InstagramPosts\InstagramPosts;
 
 class DeleteSocial extends BuildTask
 {

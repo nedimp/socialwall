@@ -1,11 +1,10 @@
 <?php
-namespace NourAlmasrieh\FacebookPosts;
+namespace NourAlmasrieh\SocialWall;
 
 use SilverStripe\Assets\Image;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Forms\DateField;
 use SilverStripe\Forms\TextField;
-use NourAlmasrieh\AllConfSocial\AllConfSocial;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 
