@@ -1,7 +1,5 @@
-<% require javascript('client/javascript/masonry.min.js') %>
-<% require javascript('client/javascript/swiper.min.js') %>
-<% require themedCSS('client/scss/_socialselement') %>
-<% require css('client/css/swiper.min.css') %>
+<% require javascript('nour-almasrieh/socialwall: client/javascript/masonry.min.js') %>
+<% require css('nour-almasrieh/socialwall: client/scss/_socialselement.scss') %>
 <% include PageHeader %>
 <div class="socialpage position-relative">
     <div class="container typography">
