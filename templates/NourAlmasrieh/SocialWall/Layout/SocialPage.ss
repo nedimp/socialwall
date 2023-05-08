@@ -1,7 +1,7 @@
-<style>$TemplateInlineFile('/socialwall/client', '/css/_socialselement.css')</style>
-<style>$TemplateInlineFile('/socialwall/client', '/css/swiper.min.css')</style>
-<script>$TemplateInlineFile('/socialwall/client', '/javascript/swiper.min.js')</script>
-<script>$TemplateInlineFile('/socialwall/client', '/javascript/masonry.min.js')</script>
+<% require javascript('client/javascript/masonry.min.js') %>
+<% require javascript('client/javascript/swiper.min.js') %>
+<% require themedCSS('client/scss/_socialselement') %>
+<% require css('client/css/swiper.min.css') %>
 <% include PageHeader %>
 <div class="socialpage position-relative">
     <div class="container typography">
@@ -29,22 +29,22 @@
         <% end_if %>
     </div>
     <div class="container typography">
-        <div class="row mt-5" data-masonry='{"percentPosition": true }'>
-            <% loop $getPosts %>
-                <% include NourAlmasrieh\SocialWall\Includes\Cards %>
+        <div class="row mt-5 socialcards" data-masonry='{"percentPosition": true }'>
+            <% loop $getPosts.Sort('Date', 'DESC') %>
+                <div class="col-md-6 col-lg-4 col-xl-3 socialcard mb-3 mb-md-4">
+                    <% include NourAlmasrieh\SocialWall\Includes\Cards %>
+                </div>
             <% end_loop %>
         </div>
     </div>
 </div>
 <script>
-    var msnry = new Masonry( '.socialcard', {
-        container: '.container',
+    var msnry = new Masonry( '.socialcards', {
+          // options...
     });
     setInterval(function () {
-        var msnry = new Masonry( '.socialcard', {
-        // options...
-       container: '.container',
-
+        var msnry = new Masonry( '.socialcards', {
+          // options...
         });
     }, 1500)
 </script>

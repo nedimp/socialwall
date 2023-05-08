@@ -2,6 +2,7 @@
 
 namespace NourAlmasrieh\SocialWall;
 
+use SilverStripe\Dev\Debug;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\View\ArrayData;
@@ -178,6 +179,7 @@ class SocialsElement extends BaseElement
                 "PlatformIconClass" => $instagram->PlatformIconClass,
                 "Message" => $instagram->Message,
                 "CreatedDate" =>  $instagram->Date(),
+                "Date" =>  $instagram->CreatedDate,
                 "MediaType" =>  $instagram->MediaType,
                 "Bild" =>  $instagram->Bild(),
                 "Username" => $instagram->Username,
@@ -187,9 +189,9 @@ class SocialsElement extends BaseElement
             ]));
         }        
         if($this->ShowOnLimitPosts){
-            return $allSocialPost->sort('CreatedDate DESC')->limit(8); 
+            return $allSocialPost->limit(8); 
         }
-        return $allSocialPost->sort('CreatedDate DESC');  
+        return $allSocialPost;  
     }
     public function getFacebook()
     {
@@ -212,9 +214,9 @@ class SocialsElement extends BaseElement
             ]));
         }
         if($this->ShowOnLimitPosts){
-            return $allSocialPost->sort('CreatedDate DESC')->limit(8); 
+            return $allSocialPost->limit(8); 
         }
-        return $allSocialPost->sort('CreatedDate DESC');  
+        return $allSocialPost;  
     }
     public function getInstagram()
     {
@@ -229,6 +231,7 @@ class SocialsElement extends BaseElement
                 "Message" => $instagram->Message,
                 "ImageLink" => $instagram->ImageLink,
                 "CreatedDate" =>  $instagram->Date(),
+                "Date" =>  $instagram->CreatedDate,
                 "MediaType" =>  $instagram->MediaType,
                 "Bild" =>  $instagram->Bild(),
                 "Username" => $instagram->Username,
@@ -238,9 +241,9 @@ class SocialsElement extends BaseElement
             ]));
         }
         if($this->ShowOnLimitPosts){
-            return $allSocialPost->sort('CreatedDate DESC')->limit(8); 
+            return $allSocialPost->limit(8); 
         }
-        return $allSocialPost->sort('CreatedDate DESC');  
+        return $allSocialPost;  
     }
 
     public function getPosts()

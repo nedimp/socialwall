@@ -77,9 +77,9 @@ class SocialPage extends Page
             ]));
         }        
         if($this->ShowOnLimitPosts){
-            return $allSocialPost->sort('CreatedDate DESC')->limit(8); 
+            return $allSocialPost->limit(8); 
         }
-        return $allSocialPost->sort('CreatedDate DESC');  
+        return $allSocialPost;  
     }
     public function getFacebook()
     {
@@ -102,9 +102,9 @@ class SocialPage extends Page
             ]));
         }
         if($this->ShowOnLimitPosts){
-            return $allSocialPost->sort('CreatedDate DESC')->limit(8); 
+            return $allSocialPost->limit(8); 
         }
-        return $allSocialPost->sort('CreatedDate DESC');  
+        return $allSocialPost;  
     }
     public function getInstagram()
     {
@@ -128,9 +128,9 @@ class SocialPage extends Page
             ]));
         }
         if($this->ShowOnLimitPosts){
-            return $allSocialPost->sort('CreatedDate DESC')->limit(8); 
+            return $allSocialPost->limit(8); 
         }
-        return $allSocialPost->sort('CreatedDate DESC');  
+        return $allSocialPost;  
     }
 
     public function getPosts()

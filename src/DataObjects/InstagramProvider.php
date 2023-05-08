@@ -116,7 +116,7 @@ class InstagramProvider extends DataObject
             }
             
         }
-        echo 'Fishing all Instagram Posts';
+        echo 'Fishing all Instagram Posts <br>';
     }
 
     public function RequestAccessToken()

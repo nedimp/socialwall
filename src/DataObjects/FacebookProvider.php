@@ -105,7 +105,7 @@ class FacebookProvider extends DataObject
                 }
             }
         }
-        echo 'Fishing all Facebook Posts ';
+        echo 'Fishing all Facebook Posts <br>';
     }
     public function RequestAccessToken()
     {

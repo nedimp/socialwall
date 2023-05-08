@@ -9,10 +9,10 @@
                         <img src="$ProfileImageConf.Fit(35,35).Link" loading="lazy" class="img-fluid profileimage d-inline-block me-3">
                     <% end_if %>
                     <% if $UsernameConf %>
-                        <h6 class="mb-0 d-inline-block username">$UsernameConf</h6>
+                        <h6 class="mb-0 d-inline-block">$UsernameConf</h6>
                     <% else %>
                         <% if $Username %>
-                            <h6 class="mb-0 d-inline-block username">$Username</h6>
+                            <h6 class="mb-0 d-inline-block">$Username</h6>
                             <% end_if %>
                     <% end_if %>
                 <% if $PlatformLinkConf %>
@@ -24,10 +24,10 @@
             <div class="card-img-top">
                 <a href="$PlatformLink" target="_blank">
                     <picture>
-                        <source srcset="$Bild.URL" media="(min-width:768px)">
+                        <source srcset="$Bild.FocusFill(770,770).URL" media="(min-width:768px)">
                         <source srcset="$Bild.FocusFill(1280,720).URL" media="(min-width:500px)">
                         <source srcset="$Bild.FocusFill(800,600).URL" media="(min-width:1px)">
-                        <img src="$Bild.URL" class="img-fluid w-100" alt="$Bild.AltText">
+                        <img src="$Bild.FocusFill(770,770).URL" class="img-fluid w-100" alt="$Bild.AltText">
                     </picture>
                 </a>
             </div>
