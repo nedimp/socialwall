@@ -1,7 +1,4 @@
 .socialcard{
-    *:not(i) {
-        font-size: 16px;
-    }
     .platform__icon{
         position: absolute;
         top: 1rem;
@@ -21,9 +18,16 @@
         border: none;
         border-radius: 0;
         padding: 0;
+        & *{
+            color: $PrimaryColor !important;
+        }
     }
     .card-footer {
         background-color: $White;
+        & *{
+            color: $PrimaryColor !important;
+            font-size: 16px !important;
+        }
     }
     .profileimage {
         border-radius: 50px;
@@ -43,28 +47,37 @@
             text-align: center;
             color: $White;
             font-weight: normal;
-            font-size: 24px;
-            line-height: 1.8;
+            font-size: 16px;
+            line-height: 2.8;
             border-radius: 1.6875rem;
             transition: all 0.5s ease;
             margin-right: 0.25rem;
             margin-bottom: 0.25rem;
             background: $SecondaryColor;
+            *{
+                color: $White !important;
+            }
             &:hover{
-                color: $PrimaryColor;
+                color: $PrimaryColor !important;
                 background: $White;
                 border-color: $White;
                 -webkit-transform: rotate(360deg);
                 -ms-transform: rotate(360deg);
                     transform: rotate(360deg);
+                *{
+                    color: $PrimaryColor !important;
+                }
             }
             &:focus {
-                color: $PrimaryColor;
+                color: $PrimaryColor !important;
                 background: $White;
                 border-color: $White;
                 -webkit-transform: rotate(360deg);
                 -ms-transform: rotate(360deg);
                     transform: rotate(360deg);
+                *{
+                    color: $PrimaryColor !important;
+                }
             }
         }
     } 

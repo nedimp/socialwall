@@ -49,23 +49,30 @@
     <% end_if %>
     <% if $ElementStyle == Slides %>
         <div class="container typography socialcards my-md-4 my-xl-5">
-            <div class="row">
-                <div class="col-12">
-                    <div class="swiper-container mt-5" id="social__element--{$ID}">
-                        <div class="swiper-wrapper">
-                            <% loop $getPosts.Sort('Date', 'DESC') %>
-                                <% if $Bild %>
-                                    <div class="swiper-slide socialcard">
-                                        <% include NourAlmasrieh\SocialWall\Includes\Slides %>
-                                    </div>
-                                <% end_if %>
-                            <% end_loop %>
-                        </div>                
-                        <div class="swiper-pagination"></div>
-                    </div>
-                </div>
+            <div class="swiper-container mt-5" id="social__element--{$ID}">
+                <div class="swiper-wrapper mb-5">
+                    <% loop $getPosts.Sort('Date', 'DESC') %>
+                        <% if $Bild %>
+                            <div class="swiper-slide socialcard">
+                                <% include NourAlmasrieh\SocialWall\Includes\Slides %>
+                            </div>
+                        <% end_if %>
+                    <% end_loop %>
+                </div>                
+                <div class="swiper-pagination"></div>
             </div>
         </div>
+        <script>
+            window.addEventListener("load", function(){
+                equalHeight('.equalHeight')
+            })
+            window.addEventListener("resize", function(){
+                setTimeout(function(){
+                    equalHeight('.equalHeight')
+                })
+            })
+        </script>
+        
     <% else_if $ElementStyle == Cards %>
         <div class="container typography cards_style d-none d-lg-block">
             <div class="row mt-5 socialcards" data-masonry='{"percentPosition": true }'>
@@ -110,7 +117,7 @@
     let swiper{$ID} = new Swiper('#social__element--{$ID}', {
         slidesPerView: 1,
         spaceBetween: 30,
-        loop: false,
+        loop: true,
         preloadImages: false,
         lazy: {
             loadPrevNext: true,

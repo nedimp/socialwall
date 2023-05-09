@@ -44,7 +44,7 @@
             <div class="row">
                 <div class="col-12">
                     <p>
-                        $Message.LimitWordCount(30, ' ...').RAW
+                        $Message.LimitWordCount(15, ' ...').RAW
                     </p>
                 </div>
             </div>
