@@ -28,7 +28,7 @@ NourAlmasrieh\SocialsElement:
       # define all fields available in the cms for this layout
       FieldsVisibleElement:
         BackgroundColor: false
-        SubTile: true
+        SubTitle: true
         ButtonCaption: true
         ExternalLink: true
         Content: true
@@ -37,6 +37,9 @@ NourAlmasrieh\SocialsElement:
         ShowOnFacebook: true
         ShowOnInstagram: true
         LinkedPageID: true
+        PostsStyle: true
+        PostsStyleID: true
+        SpeziellePosts: true
     Cards:
       #id of layout needs to be the same as the key of this layout
       #id defines also the name for the special template
@@ -50,7 +53,7 @@ NourAlmasrieh\SocialsElement:
   # define all fields available in LinkedPage Object for this layout
       FieldsVisibleElement:
         BackgroundColor: false
-        SubTile: true
+        SubTitle: true
         ButtonCaption: true
         ExternalLink: true
         Content: true
@@ -59,6 +62,10 @@ NourAlmasrieh\SocialsElement:
         ShowOnFacebook: true
         ShowOnInstagram: true
         LinkedPageID: true
+        PostsStyle: true
+        PostsStyleID: true
+        SpeziellePosts: true
+        ShowOnMasonry: true
   # settings for some fields
   FieldSettings:
       # height and width of the layout-select images in cms

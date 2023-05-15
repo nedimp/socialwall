@@ -12,6 +12,7 @@ class SocialModelAdmin extends ModelAdmin
         AllConfSocial::class,
         FacebookProvider::class,
         InstagramProvider::class,
+        AllPosts::class,
         FacebookPosts::class,
         InstagramPosts::class,
     ];

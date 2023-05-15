@@ -28,7 +28,7 @@
     </div>
     <div class="container typography">
         <div class="row mt-5 socialcards" data-masonry='{"percentPosition": true }'>
-            <% loop $getPosts.Sort('Date', 'DESC') %>
+            <% loop $getOnPosts.Sort('CreatedDate', 'DESC') %>
                 <div class="col-md-6 col-lg-4 col-xl-3 socialcard mb-3 mb-md-4">
                     <% include NourAlmasrieh\SocialWall\Includes\Cards %>
                 </div>

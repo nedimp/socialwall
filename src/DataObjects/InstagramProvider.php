@@ -31,7 +31,7 @@ class InstagramProvider extends DataObject
 
     private function PostExists($data)
     {
-        return InstagramPosts::get()->filter([
+        return AllPosts::get()->filter([
             "Platform"  =>  "instagram",
             "PlatformID"    =>  $data["id"]
         ])->first();
@@ -61,12 +61,12 @@ class InstagramProvider extends DataObject
             foreach($dataarr as $posts){
                 if(!$this->PostExists($posts))
                 {
-                    $newpost = InstagramPosts::get()->filterAny([
+                    $newpost = AllPosts::get()->filterAny([
                         "PlatformID" => $dataarr->Id,
                     ]);
-                    if(($newpost = InstagramPosts::get()->filter("PlatformID",$dataarr->Id)->first()) == null)
+                    if(($newpost = AllPosts::get()->filter("PlatformID",$dataarr->Id)->first()) == null)
                     {
-                        $newpost = InstagramPosts::create();
+                        $newpost = AllPosts::create();
                     }
                     $newpost->PlatformID = $posts["id"];
                     $newpost->ImageLink = $posts["media_url"];

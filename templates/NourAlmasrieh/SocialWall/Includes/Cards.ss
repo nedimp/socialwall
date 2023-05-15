@@ -1,24 +1,26 @@
 <div class="card shadow">
     <% if $Bild %>
-        <% if $ProfileImageConf %>
-            <div class="card-body py-2 px-3">
-                <% if $PlatformLinkConf %>
-                <a href="$PlatformLinkConf" target="_blank">
-                <% end_if %>
-                    <% if $ProfileImageConf %>
-                        <img src="$ProfileImageConf.Fit(35,35).Link" loading="lazy" class="img-fluid profileimage d-inline-block me-3">
+        <% if $AllConfSocial %>
+            <% loop $AllConfSocial %>
+                <div class="card-body py-2 px-3">
+                    <% if $PlatformLink %>
+                        <a href="$PlatformLink" target="_blank">
                     <% end_if %>
-                    <% if $UsernameConf %>
-                        <h6 class="mb-0 d-inline-block username">$UsernameConf</h6>
-                    <% else %>
-                        <% if $Username %>
-                            <h6 class="mb-0 d-inline-block username">$Username</h6>
-                            <% end_if %>
+                    <% if $ProfileImage %>
+                        <img src="$ProfileImage.Fit(35,35).Link" loading="lazy" class="img-fluid profileimage d-inline-block me-3">
                     <% end_if %>
-                <% if $PlatformLinkConf %>
-                </a>
-                <% end_if %>
-            </div>
+                    <% if $Username %>
+                        <h6 class="mb-0 d-inline-block username">$Username</h6>
+                    <% end_if %>
+                    <% if $PlatformLink %>
+                        </a>
+                    <% end_if %>
+                </div>
+            <% end_loop %>
+        <% else %>
+            <% if $Username %>
+                <h6 class="mb-0 d-inline-block username">$Username</h6>
+            <% end_if %>
         <% end_if %>
         <div class="p-0 position-relative">
             <div class="card-img-top">
@@ -39,7 +41,7 @@
         </div>
         
     <% end_if %>
-    <div class="card-footer">
+    <div class="card-footer equalHeight">
         <div class="p-3 p-md-4">
             <div class="row">
                 <div class="col-12">
@@ -51,7 +53,7 @@
             <div class="row align-items-center mt-3">
                 <div class="col-12">
                     <span>
-                        $CreatedDate
+                        $CreatedDate.Format('dd. MMMM. Y')
                     </span>
                 </div>
             </div>

@@ -12,13 +12,22 @@ use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\DropdownField;
+use NourAlmasrieh\SocialWall\AllPosts;
 use SilverStripe\Forms\TreeDropdownField;
 use SilverStripe\ORM\FieldType\DBVarchar;
 use UncleCheese\Forms\ImageOptionsetField;
 use DNADesign\Elemental\Models\BaseElement;
+use NourAlmasrieh\SocialWall\SpeziellePost;
+use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
+use SilverStripe\Forms\GridField\GridFieldDataColumns;
 use RyanPotter\SilverStripeColorField\Forms\ColorField;
+use SilverStripe\Forms\GridField\GridFieldAddNewButton;
+use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
+use Symbiote\GridFieldExtensions\GridFieldEditableColumns;
+use Symbiote\GridFieldExtensions\GridFieldAddNewInlineButton;
+use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
 
 class SocialsElement extends BaseElement
 {
@@ -32,21 +41,27 @@ class SocialsElement extends BaseElement
         'BackgroundColor' => DBVarchar::class . '(7)',
         'ExternalLink' => 'Text',
         'ButtonCaption' => 'Text',
+        'SubTitle' => 'Text',
         'Content' => 'HTMLText',
         'ShowOnLimitPosts' => 'Boolean(0)',
-        'ShowOnAllSocialsPost'  => 'Boolean(0)',
         'ShowOnFacebook' => 'Boolean(0)',
         'ShowOnInstagram' => 'Boolean(0)',
+        'ShowOnMasonry' => 'Boolean(0)',
+        'PostsStyle' => 'Text',
     ];
     private static $has_one = [
         'LinkedPage' => SiteTree::class,
+    ];
+    private static $has_many = [
+        'SpeziellePosts' => SpeziellePost::class
     ];
 
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
         $fields->removeByName([
-            'HTML'
+            'HTML',
+            'SpeziellePosts'
         ]);
         $layoutField = ImageOptionsetField::create('ElementStyle', 'Layout wählen')->setSource($this->getLayoutOptions());
         $layoutField->setImageHeight($this->getConfigVariable('FieldSettings', 'ImageHeight'));
@@ -59,8 +74,13 @@ class SocialsElement extends BaseElement
         $allFields = $schema->fieldSpecs($this);
         $columns = array_keys($allFields);
 
+        $fields->insertBefore('Title', DropdownField::create('PostsStyle', 'Posts', [
+            'mixed' => 'Zufällige Posts',
+            'custom' => 'Spezielle Auswahl - Posts können individuell angepasst werden',
+        ])->setEmptyString('Auswählen'));
         $fields->addFieldsToTab('Root.Main',  ColorField::create('BackgroundColor','Hintergrund Farbe'));   
-        $fields->addFieldsToTab('Root.Main', HTMLEditorField::create('Content', 'Inhalt')->setRows(8),'SubTitle');;
+        $fields->addFieldsToTab('Root.Main', TextField::create('SubTitle', 'SubTitle'));;
+        $fields->addFieldsToTab('Root.Main', HTMLEditorField::create('Content', 'Inhalt')->setRows(8));
         $fields->addFieldsToTab('Root.Main', TextField::create('ButtonCaption', 'Button Beschriftung'),'SocialPageID');
         $fields->insertAfter('ButtonCaption', TreeDropdownField::create('LinkedPageID', 'Interne Verlinkung', SiteTree::class)
             ->setDescription('Wird bevorzugt ausgegeben.')
@@ -69,10 +89,20 @@ class SocialsElement extends BaseElement
             ->setDescription('Muss mit "https://" gepflegt werden.<br>Wird alternativ zur internen Verlinkung ausgegeben.'),'SocialPageID');
 
         $fields->addFieldToTab('Root.Main', CheckboxField::create('ShowOnLimitPosts', 'Sollen die Posts auf 8 Stück Limitiert werden?'));
-        $fields->addFieldToTab('Root.Main', CheckboxField::create('ShowOnAllSocialsPost', 'Sollen die Posts Alle von Facebook & Instagram angezeigt?'));
         $fields->addFieldToTab('Root.Main', CheckboxField::create('ShowOnFacebook', 'Sollen nur die Posts von Facebook angezeigt?'));
         $fields->addFieldToTab('Root.Main', CheckboxField::create('ShowOnInstagram', 'Sollen nur die Posts von Instagram angezeigt?'));
-        
+        $fields->addFieldToTab('Root.Main', CheckboxField::create('ShowOnMasonry', 'In Masonry angezeigt?'));
+       
+        if ($this->PostsStyle == 'custom') {
+            $fields->addFieldsToTab('Root.Posts', 
+            GridField::create(
+                'SpeziellePosts',
+                'Spezielle Posts',
+                $this->SpeziellePosts()->Sort('SortOrder ASC'),
+                GridFieldConfig_RecordEditor::create()
+                    ->addComponent(GridFieldOrderableRows::create('SortOrder'))
+            ));
+        }
         $this->extend('updateSocialsElementCMSFields', $fields);
 
         foreach ($columns as $field) {
@@ -94,6 +124,7 @@ class SocialsElement extends BaseElement
                 }
             }
         }
+
         return $fields;
     }
 
@@ -130,7 +161,6 @@ class SocialsElement extends BaseElement
     private function getConfigVariable($type, $field){
         return Config::inst()->get('NourAlmasrieh\SocialsElement')[$type][$field];
     }
-
     private function getReservedFields(): array
     {   
         return [
@@ -150,111 +180,25 @@ class SocialsElement extends BaseElement
         }
         return null;
     }
-    public function getSlides()
-    {
-        $allSocialPost = ArrayList::create();
-        $FacebookPosts = FacebookPosts::get();
-        foreach($FacebookPosts as $facebook){
-            $allSocialPost->push(new ArrayData([
-                "PlatformID" =>  $facebook->PlatformID,
-                "PlatformLink" =>  $facebook->PlatformLink,
-                "Platform" => $facebook->Platform,
-                "PlatformIconClass" => $facebook->PlatformIconClass,
-                "Message" => $facebook->Message,
-                "ImageLink" => $facebook->ImageLink,
-                "CreatedDate" =>  $facebook->Date(),
-                "Bild" =>  $facebook->Bild(),
-                "Username" => $facebook->Username,
-                "UsernameConf" => $facebook->ConfSocial()->Username,
-                "ProfileImageConf" => $facebook->ConfSocial()->ProfileImage,
-                "PlatformLinkConf" => $facebook->ConfSocial()->PlatformLink,
-            ]));
-        }
-        $InstagramPosts = InstagramPosts::get();
-        foreach($InstagramPosts as $instagram){
-            $allSocialPost->push(new ArrayData([
-                "PlatformID" =>  $instagram->PlatformID,
-                "PlatformLink" =>  $instagram->PlatformLink,
-                "Platform" => $instagram->Platform,
-                "PlatformIconClass" => $instagram->PlatformIconClass,
-                "Message" => $instagram->Message,
-                "CreatedDate" =>  $instagram->Date(),
-                "Date" =>  $instagram->CreatedDate,
-                "MediaType" =>  $instagram->MediaType,
-                "Bild" =>  $instagram->Bild(),
-                "Username" => $instagram->Username,
-                "UsernameConf" => $instagram->ConfSocial()->Username,
-                "ProfileImageConf" => $instagram->ConfSocial()->ProfileImage,
-                "PlatformLinkConf" => $instagram->ConfSocial()->PlatformLink,
-            ]));
-        }        
-        if($this->ShowOnLimitPosts){
-            return $allSocialPost->limit(8); 
-        }
-        return $allSocialPost;  
-    }
-    public function getFacebook()
-    {
-        $allSocialPost = ArrayList::create();
-        $FacebookPosts = FacebookPosts::get();
-        foreach($FacebookPosts as $facebook){
-            $allSocialPost->push(new ArrayData([
-                "PlatformID" =>  $facebook->PlatformID,
-                "PlatformLink" =>  $facebook->PlatformLink,
-                "Platform" => $facebook->Platform,
-                "PlatformIconClass" => $facebook->PlatformIconClass,
-                "Message" => $facebook->Message,
-                "ImageLink" => $facebook->ImageLink,
-                "CreatedDate" =>  $facebook->Date(),
-                "Bild" =>  $facebook->Bild(),
-                "Username" => $facebook->Username,
-                "UsernameConf" => $facebook->ConfSocial()->Username,
-                "ProfileImageConf" => $facebook->ConfSocial()->ProfileImage,
-                "PlatformLinkConf" => $facebook->ConfSocial()->PlatformLink,
-            ]));
-        }
-        if($this->ShowOnLimitPosts){
-            return $allSocialPost->limit(8); 
-        }
-        return $allSocialPost;  
-    }
-    public function getInstagram()
-    {
-        $allSocialPost = ArrayList::create();
-        $InstagramPosts = InstagramPosts::get();
-        foreach($InstagramPosts as $instagram){
-            $allSocialPost->push(new ArrayData([
-                "PlatformID" =>  $instagram->PlatformID,
-                "PlatformLink" =>  $instagram->PlatformLink,
-                "Platform" => $instagram->Platform,
-                "PlatformIconClass" => $instagram->PlatformIconClass,
-                "Message" => $instagram->Message,
-                "ImageLink" => $instagram->ImageLink,
-                "CreatedDate" =>  $instagram->Date(),
-                "Date" =>  $instagram->CreatedDate,
-                "MediaType" =>  $instagram->MediaType,
-                "Bild" =>  $instagram->Bild(),
-                "Username" => $instagram->Username,
-                "UsernameConf" => $instagram->ConfSocial()->Username,
-                "ProfileImageConf" => $instagram->ConfSocial()->ProfileImage,
-                "PlatformLinkConf" => $instagram->ConfSocial()->PlatformLink,
-            ]));
-        }
-        if($this->ShowOnLimitPosts){
-            return $allSocialPost->limit(8); 
-        }
-        return $allSocialPost;  
-    }
-
     public function getPosts()
     {
-        if($this->ShowOnAllSocialsPost){
-            return $this->getSlides();
-        }elseif($this->ShowOnFacebook){
-            return $this->getFacebook();
-        }elseif($this->ShowOnInstagram){
-            return $this->getInstagram();
+        if($this->ShowOnLimitPosts){
+            return AllPosts::get()->limit(8); 
         }
-        return $this->getSlides();
+        return AllPosts::get();
+    }
+    public function getOnPosts()
+    {
+        $arrayfiltter = [];
+        if($this->ShowOnFacebook){
+            $arrayfiltter[] = 'facebook';
+        }
+        if($this->ShowOnInstagram){
+            $arrayfiltter[] = 'instagram';
+        }
+        if (count($arrayfiltter) > 0){
+            return $this->getPosts()->filter("Platform", $arrayfiltter);
+        }
+        return $this->getPosts();
     }
 }

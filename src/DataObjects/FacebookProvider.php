@@ -36,7 +36,7 @@ class FacebookProvider extends DataObject
     }
     private function PostExists($data)
     {
-        return FacebookPosts::get()->filter([
+        return AllPosts::get()->filter([
             "Platform"  =>  "facebook",
             "PlatformID"    =>  $data["id"]
         ])->first();
@@ -70,12 +70,12 @@ class FacebookProvider extends DataObject
                  //Debug::dump($dataarr);die;
                 if(!$this->PostExists($posts))
                 {
-                    $newpost = FacebookPosts::get()->filterAny([
+                    $newpost = AllPosts::get()->filterAny([
                         "PlatformID" => $dataarr->Id,
                     ]);
-                    if(($newpost = FacebookPosts::get()->filter("PlatformID",$dataarr->Id)->first()) == null)
+                    if(($newpost = AllPosts::get()->filter("PlatformID",$dataarr->Id)->first()) == null)
                     {
-                        $newpost = FacebookPosts::create();
+                        $newpost = AllPosts::create();
                     }
                     $newpost->PlatformID = $posts["id"];
                     $newpost->ImageLink = $posts["full_picture"];
@@ -86,7 +86,7 @@ class FacebookProvider extends DataObject
                         file_put_contents($filepath, file_get_contents($mediadataImage)); 
                         $file = Image::create();
                         $file->setFromLocalFile($filepath);
-                        $file->ParentID = Folder::find_or_make('FacebookPosts')->ID;
+                        $file->ParentID = Folder::find_or_make('AllPosts')->ID;
                         $fileID = $file->write();
                         $file->publishSingle();
                         $file->publishFile();

@@ -25,7 +25,6 @@ class AllConfSocial extends DataObject
         $fields->addFieldToTab('Root.Main', TextField::create('Username','Profile Username'));
         $fields->addFieldToTab('Root.Main', UploadField::create('ProfileImage','Profile Bild'));
         $fields->addFieldToTab('Root.Main', TextField::create('PlatformLink','Platform Link'));
-
         return $fields;
     }
 }
