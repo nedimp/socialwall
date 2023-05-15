@@ -19,7 +19,9 @@
             <% end_loop %>
         <% else %>
             <% if $Username %>
-                <h6 class="mb-0 d-inline-block username">$Username</h6>
+                <div class="card-body py-2 px-3">
+                    <h6 class="mb-0 d-inline-block username">$Username</h6>
+                </div>
             <% end_if %>
         <% end_if %>
         <div class="p-0 position-relative">
