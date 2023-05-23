@@ -116,7 +116,6 @@ class InstagramProvider extends DataObject
                     $newpost->write();
                 }
             }
-            die;
         }
         echo 'Fishing all Instagram Posts <br>';
     }
