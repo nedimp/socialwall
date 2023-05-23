@@ -103,11 +103,10 @@ class InstagramProvider extends DataObject
                             $newpost->BildID = $fileID;
                         }
                     }
-                    /*$content = $posts['caption'];
-                    $content1 = preg_replace('/[^\p{L}\p{N}\s]/u', '', $content);
-                    $newpost->Message = $content1;*/
-                    $newpost->Message = $posts["caption"];
-                    Debug::dump($newpost->Message);die;
+                    $content = $posts['caption'];
+                    $content1 = trim(ucfirst(preg_replace('/[^A-Za-zÄ-Üä-ü-!-?-#-.\s]/u', '', $content)));
+                    //Debug::dump($content1);
+                    $newpost->Message = $content1;
                     $newpost->CreatedDate = $posts["timestamp"];
                     $newpost->PlatformLink = $posts["permalink"];
                     $newpost->Platform = "instagram";
@@ -117,7 +116,7 @@ class InstagramProvider extends DataObject
                     $newpost->write();
                 }
             }
-            
+            die;
         }
         echo 'Fishing all Instagram Posts <br>';
     }

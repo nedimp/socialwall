@@ -93,10 +93,10 @@ class FacebookProvider extends DataObject
                         $file->publishFile();
                         $newpost->BildID = $fileID;
                     }
-                    /*$content = $posts['message'];
-                    $content1 = preg_replace('/[^\p{L}\p{N}\s]/u', '', $content);
-                    $newpost->Message = $content1;*/
-                    $newpost->Message = $posts["message"];
+                    $content = $posts['message'];
+                    $content1 = trim(ucfirst(preg_replace('/[^A-Za-zÄ-Üä-ü-!-?-#-.\s]/u', '', $content)));
+                    //Debug::dump($content1);die;
+                    $newpost->Message = $content1;
                     $newpost->CreatedDate = $posts["updated_time"];
                     $newpost->UserName = $posts["username"];
                     $newpost->PlatformLink = $posts["permalink_url"];
