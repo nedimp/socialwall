@@ -10,12 +10,8 @@ class DeleteSocial extends BuildTask
     protected $description = 'Delete Social(Facebook + Instagram)';
     
     public function run($request) {
-        $listFacebookPosts = FacebookPosts::get();
-        foreach($listFacebookPosts as $item) { 
-            $item->delete();
-        }
-        $listInstagramPosts = InstagramPosts::get();
-        foreach($listInstagramPosts as $item) { 
+        $listPosts = AllPosts::get();
+        foreach($listPosts as $item) { 
             $item->delete();
         }
     }

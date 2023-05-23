@@ -10,6 +10,9 @@ use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 
 class AllPosts extends DataObject
 {
+    private static $singular_name = 'Posts';
+    private static $plural_name = 'Facebook und Instagram Posts';
+    private static $table_name = 'SocialPosts';
     private static $db = [
         'PlatformID'    =>  'Text',
         'PlatformLink'  =>  'Text',

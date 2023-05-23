@@ -75,8 +75,9 @@ class SocialsElement extends BaseElement
         $columns = array_keys($allFields);
 
         $fields->insertBefore('Title', DropdownField::create('PostsStyle', 'Posts', [
-            'mixed' => 'Zufällige Posts',
+            'mixed' => 'Zufällige Posts (Neueste Post) angezeitgt wird',
             'custom' => 'Spezielle Auswahl - Posts können individuell angepasst werden',
+            'bothstyle' => 'Erste 4er-Reihe - die Neueste Post & Zweite 4er-Reihe - die besondere Post können angepasst werden',
         ])->setEmptyString('Auswählen'));
         $fields->addFieldsToTab('Root.Main',  ColorField::create('BackgroundColor','Hintergrund Farbe'));   
         $fields->addFieldsToTab('Root.Main', TextField::create('SubTitle', 'SubTitle'));;
@@ -93,7 +94,7 @@ class SocialsElement extends BaseElement
         $fields->addFieldToTab('Root.Main', CheckboxField::create('ShowOnInstagram', 'Sollen nur die Posts von Instagram angezeigt?'));
         $fields->addFieldToTab('Root.Main', CheckboxField::create('ShowOnMasonry', 'In Masonry angezeigt?'));
        
-        if ($this->PostsStyle == 'custom') {
+        if ($this->PostsStyle == 'custom' || $this->owner->PostsStyle == 'bothstyle') {
             $fields->addFieldsToTab('Root.Posts', 
             GridField::create(
                 'SpeziellePosts',

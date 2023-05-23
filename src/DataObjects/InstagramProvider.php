@@ -2,6 +2,7 @@
 
 namespace NourAlmasrieh\SocialWall;
 
+use SilverStripe\Dev\Debug;
 use SilverStripe\Assets\Image;
 use SilverStripe\Assets\Folder;
 use SilverStripe\ORM\DataObject;
@@ -102,9 +103,11 @@ class InstagramProvider extends DataObject
                             $newpost->BildID = $fileID;
                         }
                     }
-                    $content = $posts['caption'];
+                    /*$content = $posts['caption'];
                     $content1 = preg_replace('/[^\p{L}\p{N}\s]/u', '', $content);
-                    $newpost->Message = $content1;
+                    $newpost->Message = $content1;*/
+                    $newpost->Message = $posts["caption"];
+                    Debug::dump($newpost->Message);die;
                     $newpost->CreatedDate = $posts["timestamp"];
                     $newpost->PlatformLink = $posts["permalink"];
                     $newpost->Platform = "instagram";

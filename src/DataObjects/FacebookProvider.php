@@ -2,6 +2,7 @@
 
 namespace NourAlmasrieh\SocialWall;
 
+use SilverStripe\Dev\Debug;
 use SilverStripe\Assets\Image;
 use SilverStripe\Assets\Folder;
 use SilverStripe\ORM\DataObject;
@@ -92,9 +93,10 @@ class FacebookProvider extends DataObject
                         $file->publishFile();
                         $newpost->BildID = $fileID;
                     }
-                    $content = $posts['message'];
+                    /*$content = $posts['message'];
                     $content1 = preg_replace('/[^\p{L}\p{N}\s]/u', '', $content);
-                    $newpost->Message = $content1;
+                    $newpost->Message = $content1;*/
+                    $newpost->Message = $posts["message"];
                     $newpost->CreatedDate = $posts["updated_time"];
                     $newpost->UserName = $posts["username"];
                     $newpost->PlatformLink = $posts["permalink_url"];

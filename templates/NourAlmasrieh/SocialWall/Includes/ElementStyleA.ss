@@ -1,7 +1,13 @@
 <div class="container typography socialcards my-md-4 my-xl-5">
     <div class="swiper-container mt-5" id="social__element--{$ID}">
         <div class="swiper-wrapper mb-5">
-            <% if $PostsStyle == custom %>
+            <% if $PostsStyle == 'mixed' %>
+                <% loop $getOnPosts.Sort('CreatedDate', 'DESC') %>
+                    <div class="swiper-slide socialcard">
+                        <% include NourAlmasrieh\SocialWall\Includes\Slides %>                             
+                    </div>
+                <% end_loop %>
+            <% else_if $PostsStyle == 'custom' %>
                 <% loop $SpeziellePosts.Sort('SortOrder', 'ASC') %>
                     <% with $AllPosts %>
                         <div class="swiper-slide socialcard">
@@ -9,11 +15,18 @@
                         </div>
                     <% end_with %>
                 <% end_loop %>
-            <% else %>
-                <% loop $getOnPosts.Sort('CreatedDate', 'DESC') %>
+            <% else_if $PostsStyle == 'bothstyle' %>
+                <% loop $getOnPosts.Sort('CreatedDate', 'DESC').Limit(4) %>
                     <div class="swiper-slide socialcard">
                         <% include NourAlmasrieh\SocialWall\Includes\Slides %>                             
                     </div>
+                <% end_loop %>
+                <% loop $SpeziellePosts.Sort('SortOrder', 'ASC').Limit(4) %>
+                    <% with $AllPosts %>
+                        <div class="swiper-slide socialcard">
+                            <% include NourAlmasrieh\SocialWall\Includes\Slides %>                             
+                        </div>
+                    <% end_with %>
                 <% end_loop %>
             <% end_if %>
         </div>                
