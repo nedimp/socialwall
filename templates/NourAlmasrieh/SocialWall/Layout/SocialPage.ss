@@ -27,7 +27,7 @@
         <% end_if %>
     </div>
     <div class="container typography">
-        <div class="row mt-5 socialcards" data-masonry='{"percentPosition": true }'>
+        <div class="row mt-5 socialcards masonry" data-masonry='{"percentPosition": true }'>
             <% loop $getOnPosts.Sort('CreatedDate', 'DESC') %>
                 <div class="col-md-6 col-lg-4 col-xl-3 socialcard mb-3 mb-md-4">
                     <% include NourAlmasrieh\SocialWall\Includes\Cards %>
@@ -37,11 +37,11 @@
     </div>
 </div>
 <script>
-    var msnry = new Masonry( '.socialcards', {
+    var msnry = new Masonry( '.masonry', {
           // options...
     });
     setInterval(function () {
-        var msnry = new Masonry( '.socialcards', {
+        var msnry = new Masonry( '.masonry', {
           // options...
         });
     }, 1500)

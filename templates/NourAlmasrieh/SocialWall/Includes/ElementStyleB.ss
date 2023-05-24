@@ -1,5 +1,5 @@
 <div class="container typography cards_style">
-    <div class="row mt-5 socialcards" <% if $ShowOnMasonry %> data-masonry='{"percentPosition": true }'<% end_if %>>
+    <div class="row mt-5 socialcards <% if $ShowOnMasonry %> masonry<% end_if %>" <% if $ShowOnMasonry %> data-masonry='{"percentPosition": true }'<% end_if %>>
         <% if $PostsStyle == 'mixed' %>
             <% if $ShowOnMasonry %>
                 <% loop $getOnPosts.Sort('CreatedDate', 'DESC') %>
@@ -64,14 +64,25 @@
     </div>
 </div>
 <% if $ShowOnMasonry %>
-<script>
-    var msnry = new Masonry( '.socialcards', {
-          // options...
-    });
-    setInterval(function () {
-        var msnry = new Masonry( '.socialcards', {
-          // options...
+    <script>
+        var msnry = new Masonry( '.masonry', {
+            // options...
         });
-    }, 1500)
-</script>
+        setInterval(function () {
+            var msnry = new Masonry( '.masonry', {
+            // options...
+            });
+        }, 1500)
+    </script>
+<% else %>
+    <script>
+        window.addEventListener("load", function(){
+            equalHeight('.equalHeight')
+        })
+        window.addEventListener("resize", function(){
+            setTimeout(function(){
+                equalHeight('.equalHeight')
+            })
+        })
+    </script>
 <% end_if %>

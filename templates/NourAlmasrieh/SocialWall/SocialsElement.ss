@@ -8,6 +8,11 @@
     <% if $ElementStyle == Slides %>
         <% include NourAlmasrieh\SocialWall\Includes\ElementStyleA %>  
     <% else_if $ElementStyle == Cards %>
-        <% include NourAlmasrieh\SocialWall\Includes\ElementStyleB %> 
+        <div class="d-none d-lg-block">
+            <% include NourAlmasrieh\SocialWall\Includes\ElementStyleB %> 
+        </div>
+        <div class="d-block d-lg-none">
+            <% include NourAlmasrieh\SocialWall\Includes\ElementStyleA %>
+        </div>
     <% end_if %>
 </div>
