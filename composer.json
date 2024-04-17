@@ -10,11 +10,11 @@
     }
   ],
   "require": {
-    "silverstripe/recipe-cms": "^5.11",
-    "dnadesign/silverstripe-elemental": "^5.2",
-    "axllent/silverstripe-scss": "^1.8",
-    "buckleshusky/fontawesomeiconpicker": "3.1.2",
-    "bummzack/sortablefile": "^2",
+    "silverstripe/recipe-cms": "^5.0",
+    "dnadesign/silverstripe-elemental": "^4.0",
+    "axllent/silverstripe-scss": "^1.0",
+    "buckleshusky/fontawesomeiconpicker": "^3.0",
+    "bummzack/sortablefile": "^2.0",
     "ryanpotter/silverstripe-color-field": "^1.0"
   },
   "autoload": {
