@@ -1,5 +1,5 @@
-<% require javascript('nour-almasrieh/socialwall: client/javascript/masonry.min.js') %>
-<% require css('nour-almasrieh/socialwall: client/scss/_socialselement.scss') %>
+<% require javascript('nedimp/socialwall: client/javascript/masonry.min.js') %>
+<% require css('nedimp/socialwall: client/scss/_socialselement.scss') %>
 <% include PageHeader %>
 <div class="socialpage position-relative">
     <div class="container typography">

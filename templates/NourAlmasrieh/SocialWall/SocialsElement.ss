@@ -1,8 +1,8 @@
-<% require javascript('nour-almasrieh/socialwall: client/javascript/masonry.min.js') %>
-<% require javascript('nour-almasrieh/socialwall: client/javascript/swiper.min.js') %>
-<% require javascript('nour-almasrieh/socialwall: client/javascript/customScripts.js') %>
-<% require css('nour-almasrieh/socialwall: client/css/swiper.min.css') %>
-<% require css('nour-almasrieh/socialwall: client/scss/_socialselement.scss') %>
+<% require javascript('nedimp/socialwall: client/javascript/masonry.min.js') %>
+<% require javascript('nedimp/socialwall: client/javascript/swiper.min.js') %>
+<% require javascript('nedimp/socialwall: client/javascript/customScripts.js') %>
+<% require css('nedimp/socialwall: client/css/swiper.min.css') %>
+<% require css('nedimp/socialwall: client/scss/_socialselement.scss') %>
 <div ID="SocialsElement{$ID}" class="SocialsElement py-5" style="background-color: $BackgroundColor;">
     <% include NourAlmasrieh\SocialWall\Includes\ElementHead %>
     <% if $ElementStyle == Slides %>
