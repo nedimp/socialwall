@@ -15,7 +15,7 @@ use SilverStripe\ORM\FieldType\DBVarchar;
 use DNADesign\Elemental\Models\BaseElement;
 use NourAlmasrieh\SocialWall\SpeziellePost;
 use SilverStripe\Forms\GridField\GridField;
-use SilverStripe\Core\Manifest\ModuleLoader;
+use SilverStripe\Core\Manifest\ModuleResourceLoader;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use RyanPotter\SilverStripeColorField\Forms\ColorField;
 use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
@@ -132,14 +132,15 @@ class SocialsElement extends BaseElement
                 if(stristr($layoutVar['imgPath'], 'themes/') !== false){
                     $img = $layoutVar['imgPath'];
                 } else {
-                    $img = ModuleLoader::getModule('nour-almasrieh/socialwall')->getResource($layoutVar['imgPath']);
-                    if($img){
-                        $img->getURL();
+                    // Get the module resource path using ModuleResourceLoader
+                    $modulePath = ModuleResourceLoader::singleton()->resolveURL('nour-almasrieh/socialwall', $layoutVar['imgPath']);
+                    if($modulePath){
+                        $img = $modulePath;
                     }
                 }
                 $options[$layoutID] = [
                     'title' => $layoutVar['title'],
-                    'image' => ($img) ? Director::absoluteBaseURL() . 'resources/' . $img : '',
+                    'image' => ($img) ? Director::absoluteBaseURL() . $img : '',
                 ];
             }
         }
