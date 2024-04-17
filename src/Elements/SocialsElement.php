@@ -2,10 +2,7 @@
 
 namespace NourAlmasrieh\SocialWall;
 
-use SilverStripe\Dev\Debug;
-use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\DataObject;
-use SilverStripe\View\ArrayData;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Control\Director;
 use SilverStripe\CMS\Model\SiteTree;
@@ -15,18 +12,13 @@ use SilverStripe\Forms\DropdownField;
 use NourAlmasrieh\SocialWall\AllPosts;
 use SilverStripe\Forms\TreeDropdownField;
 use SilverStripe\ORM\FieldType\DBVarchar;
-use UncleCheese\Forms\ImageOptionsetField;
 use DNADesign\Elemental\Models\BaseElement;
 use NourAlmasrieh\SocialWall\SpeziellePost;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
-use SilverStripe\Forms\GridField\GridFieldDataColumns;
 use RyanPotter\SilverStripeColorField\Forms\ColorField;
-use SilverStripe\Forms\GridField\GridFieldAddNewButton;
 use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
-use Symbiote\GridFieldExtensions\GridFieldEditableColumns;
-use Symbiote\GridFieldExtensions\GridFieldAddNewInlineButton;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
 
 class SocialsElement extends BaseElement
@@ -63,11 +55,8 @@ class SocialsElement extends BaseElement
             'HTML',
             'SpeziellePosts'
         ]);
-        $layoutField = ImageOptionsetField::create('ElementStyle', 'Layout wählen')->setSource($this->getLayoutOptions());
-        $layoutField->setImageHeight($this->getConfigVariable('FieldSettings', 'ImageHeight'));
-        $layoutField->setImageWidth($this->getConfigVariable('FieldSettings', 'ImageWidth'));
-        $layoutField->setDescription($this->getConfigVariable('FieldSettings', 'FieldDescription'));
-        $fields->addFieldToTab('Root.Main', $layoutField, 'Title');
+        
+        $fields->addFieldToTab('Root.Main', DropdownField::create('ElementStyle', 'Layout wählen', $this->getLayoutOptions())->setEmptyString('Select Layout'), 'Title');
 
         /*Get all fields*/
         $schema = DataObject::getSchema();

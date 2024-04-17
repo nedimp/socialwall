@@ -1,35 +1,33 @@
 {
-    "name":"nour-almasrieh/socialwall",
-    "description": "Social Wall",
-    "license": "BSD-2-Clause",
-    "authors": [
-      {
-        "name":"Nour Almasrieh",
-        "email": "nour.almasrieh@gmail.com",
-        "role": "Developer"
-      }
-    ],
-    "require":{
-      "silverstripe/recipe-cms": "^4.11",
-      "dnadesign/silverstripe-elemental": "^4",
-      "axllent/silverstripe-scss": "^1.8",
-      "unclecheese/silverstripe-image-optionset": "^2.0",
-      "buckleshusky/fontawesomeiconpicker": "3.0.*",
-      "bummzack/sortablefile": "^2",
-      "ryanpotter/silverstripe-color-field": "^1.0"
-    },
-    "autoload": {
-      "psr-4": {
-        "socialwall\\": "src/"
-      }
-    },
-    "extra": {
-      "expose": [
-        "client/css",
-        "client/images",
-        "client/javascript",
-        "client/scss"
-      ]
+  "name": "nedimp/socialwall",
+  "description": "Social Wall",
+  "license": "BSD-2-Clause",
+  "authors": [
+    {
+      "name": "Nedim Priluskic",
+      "email": "nedim.priluskic@gmail.com",
+      "role": "Developer"
     }
+  ],
+  "require": {
+    "silverstripe/recipe-cms": "^5.11",
+    "dnadesign/silverstripe-elemental": "^5.2",
+    "axllent/silverstripe-scss": "^1.8",
+    "buckleshusky/fontawesomeiconpicker": "3.1.2",
+    "bummzack/sortablefile": "^2",
+    "ryanpotter/silverstripe-color-field": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "socialwall\\": "src/"
+    }
+  },
+  "extra": {
+    "expose": [
+      "client/css",
+      "client/images",
+      "client/javascript",
+      "client/scss"
+    ]
   }
-  
+}
