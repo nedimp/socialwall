@@ -133,7 +133,7 @@ class SocialsElement extends BaseElement
                     $img = $layoutVar['imgPath'];
                 } else {
                     // Get the module resource path using ModuleResourceLoader
-                $modulePath = ModuleResourceLoader::singleton()->resolveURL('nour-almasrieh/socialwall', $layoutVar['imgPath']);
+                $modulePath = ModuleResourceLoader::singleton()->resolveURL('nedimp/socialwall', $layoutVar['imgPath']);
                     if ($modulePath) {
                     $img = $modulePath;
                     }
